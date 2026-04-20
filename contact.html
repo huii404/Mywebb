@@ -36,7 +36,12 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="article.html">Article</a></li>
-                    <a class="nav-link active" aria-current="page" href="review.html">Review</a>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="vlog.html">Vlog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="lab.html">Lab</a>
+                    </li>
                     <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -49,49 +54,41 @@
             <hr class="mt-3">
 
             <div class="col-lg-4">
-                <div class="card text-center mt-2 shadow-sm py-3">
+                <div class="card text-center mt-2 shadow py-3">
                     <i class="fa-solid fa-envelope fa-2x text-primary mb-2"></i>
                     <b>hcao84539@gmail.com</b>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card text-center mt-2 shadow-sm py-3">
+                <div class="card text-center mt-2 shadow py-3">
                     <i class="fa-brands fa-github fa-2x mb-2"></i>
                     <b>Huii404</b>
                 </div>
             </div>
             <div class="col-lg-4">
-                <div class="card text-center mt-2 shadow-sm py-3">
+                <div class="card text-center mt-2 shadow py-3">
                     <i class="fa-brands fa-tiktok fa-2x mb-2"></i>
                     <b>Huii404</b>
                 </div>
             </div>
 
-            <hr class="mt-5 mb-4">
-
-            <div class="col-lg-6">
-                <h4 class="text-center mb-4"><b>Kĩ năng</b></h4>
-                <div class="card shadow-sm p-4 border-1">
-                    <div v-for="(skill, index) in skillsList" :key="index" class="mb-3">
-                        <div class="d-flex justify-content-between mb-1">
-                            <span class="fw-bold"><i :class="skill.icon" class="me-2 text-secondary"></i>{{ skill.name
-                                }}</span>
-                            <span class="text-muted">{{ skill.percent }}%</span>
-                        </div>
-                        <div class="progress" style="height: 8px;">
-                            <div class="progress-bar bg-primary" role="progressbar"
-                                :style="{ width: skill.percent + '%' }" :aria-valuenow="skill.percent" aria-valuemin="0"
-                                aria-valuemax="100">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row-auto text-center">
+                <span class="badge bg-primary mt-4 fs-5 rounded-pill">More</span>
             </div>
 
-            <div class="col-lg-6 mt-4 mt-lg-0">
-                <h4 class="text-center mb-4"><b>Sở thích</b></h4>
-                <div class="card shadow-sm p-4 border-1 h-90 d-flex">
-                    <div class="d-flex flex-wrap gap-2">
+            <div class="col-lg-12 mt-4">
+
+                <div class="card shadow p-4 border-1 h-90 d-flex">
+                    <b class="text-center">Kĩ năng</b>
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                        <span v-for="(hobby, index) in skillsList" :key="index"
+                            class="badge rounded-pill text-bg-light border px-3 py-2 fs-6 hobby-badge text-dark">
+                            <i :class="hobby.icon" class="me-1 text-primary"></i> {{ hobby.name }}
+                        </span>
+                    </div>
+                    <hr class="mt-4 text-danger">
+                    <b class="text-center">Sở thích</b>
+                    <div class="d-flex flex-wrap gap-2 mt-3">
                         <span v-for="(hobby, index) in hobbiesList" :key="index"
                             class="badge rounded-pill text-bg-light border px-3 py-2 fs-6 hobby-badge text-dark">
                             <i :class="hobby.icon" class="me-1 text-primary"></i> {{ hobby.name }}
@@ -111,19 +108,18 @@
             el: "#app",
             data: {
                 skillsList: [
-                    { name: 'C++', percent: 40, icon: 'fa-solid fa-code' },
-                    { name: 'C# / Java', percent: 20, icon: 'fa-brands fa-java' },
-                    { name: 'Python', percent: 5, icon: 'fa-brands fa-python' },
-                    { name: 'VueJS & Bootstrap', percent: 30, icon: 'fa-brands fa-vuejs' },
+                    { name: 'C++ / C#', icon: 'fa-solid fa-code' },
+                    { name: 'Java', icon: 'fa-brands fa-java' },
+                    { name: 'VueJS & Bootstrap', icon: 'fa-brands fa-vuejs' },
                 ],
-                
+
                 hobbiesList: [
                     { name: 'Tập Gym', icon: 'fa-solid fa-dumbbell' },
                     { name: 'Chụp ảnh', icon: 'fa-solid fa-camera' },
                     { name: 'Đạp xe', icon: 'fa-solid fa-bicycle' },
-                    { name: 'Phá máy', icon: 'fa-solid fa-microchip' }, // Hoặc 'fa-solid fa-screwdriver-wrench' cũng rất hợp với "phá máy"
-                    { name: 'Trekking', icon: 'fa-solid fa-person-hiking' }, // Icon người leo núi
-                    { name: 'Chill', icon: 'fa-solid fa-mug-hot' } // Icon tách cà phê/trà nóng cho cảm giác chill
+                    { name: 'Phá máy', icon: 'fa-solid fa-computer' },
+                    { name: 'Trekking', icon: 'fa-solid fa-person-hiking' },
+                    { name: 'Chill', icon: 'fa-solid fa-mug-hot' }
                 ]
             }
         })

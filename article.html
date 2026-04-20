@@ -31,7 +31,10 @@
                         <a class="nav-link active" aria-current="page" href="article.html">Article</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="review.html">Review</a>
+                        <a class="nav-link active" aria-current="page" href="vlog.html">Vlog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="lab.html">Lab</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="contact.html">Contact</a>
@@ -47,8 +50,8 @@
                 <label for="" class="mt-4"><b>Danh mục</b></label>
                 <select v-model="tu_khoa" class="form-control text-center">
                     <option value="">Chọn chủ đề</option>
-                    <option v-for="(cat, index) in danh_muc_duy_nhat" :key="index" :value="cat">
-                        {{ cat }}
+                    <option v-for="(value, index) in danh_muc_duy_nhat" :key="index">
+                        <b>{{ value}} </b>
                     </option>
                 </select>
 
@@ -71,22 +74,38 @@
             <div class="col-lg-10">
                 <div class="row g-4">
                     <div v-for="(value, index) in loc_danhmuc()" :key="value.id" class="col-lg-3">
-                        <div class="card p-2 text-center border-danger shadow  mt-5 h-100">
+                        <div class="card p-2 text-center shadow mt-5 h-100 rounded-4 flex-column">
                             <b><i>{{ value.name }}</i></b>
                             <div class="d-flex mt-3">
                                 <p class="mb-0">{{ value.date }}</p>
                                 <span class="badge bg-primary ms-auto rounded-5 mt-1">{{value.category}}</span>
-
                             </div>
-                            <button @click="xemChiTiet(value)" class="btn btn-outline-success ms-3 mt-2">Open</button>
-
+                            <div class="d-flex mt-auto ">
+                                <button @click="showToast(value)" class="btn btn-outline-success ms-4 mt-4 rounded-4">
+                                    Copy
+                                </button>
+                                <button @click="xemChiTiet(value)"
+                                    class="btn btn-outline-success ms-5 mt-4 rounded-4">Open</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                    <div id="liveToast" class="toast rounded-4" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header bg-primary text-white rounded-4">
+                            <strong class="me-auto">Copy Thành công </strong>
+                            <button type="button" class="btn-close btn-white" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-    <script src="data.js"></script>
+    <script src="data_aricle.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
@@ -96,9 +115,11 @@
         el: "#app",
         data: {
             tu_khoa: "",
+            total: 0,
             kieu_sap_xep: "0",
             list: [],
             baiviet: DANH_SACH_BAI_VIET,
+            thong_bao: "",
         },
 
         methods: {
@@ -128,13 +149,24 @@
                 return this.loc_time(ds);
             },
             xemChiTiet(item) {
-                //link = id của mảng
-                window.location.href = `detail.html?id=${item.id}`;
+                window.location.href = `detail_article.html?id=${item.id}`;
+            },
+            showToast(item) {
+                // Thay vì dùng window.location.origin (bị mất thư mục con)
+                // Ta dùng cách nối chuỗi trực tiếp hoặc window.location.pathname
+                let currentPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+                let linkclickboard = `${window.location.origin}${currentPath}detail_article.html?id=${item.id}`;
+
+                navigator.clipboard.writeText(linkclickboard);
+
+                // Hiển thị thông báo Toast
+                const toastElement = document.getElementById('liveToast');
+                const toast = new bootstrap.Toast(toastElement);
+                toast.show();
             }
 
         },
         computed: {
-            // Tạo danh sách danh mục không trùng lặp
             danh_muc_duy_nhat() {
                 //  Lấy ra tất cả category từ mảng baiviet
                 let tat_ca_danh_muc = this.baiviet.map(item => item.category);

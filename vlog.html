@@ -1,0 +1,164 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vlog</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html"><b>Myweb</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="article.html">Article</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="vlog.html">Vlog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="lab.html">Lab</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container" id="app">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="d-flex mt-3">
+
+                    <input v-model="tukhoa" type="text" class="form-control ms-2" placeholder="Nhập nội dung cần tìm">
+                    <button class="btn btn-outline-primary rounded-3 ms-2"><i
+                            class="fa-solid fa-magnifying-glass"></i></button>
+                    <button @click="reset_search" class="btn btn-outline-danger ms-2 "><i
+                            class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+
+
+
+
+            <div v-for="(value, index) in search_baivet()" :key="value.id" class="col-lg-12">
+                <div class="card shadow border-0 mt-4 rounded-4 card-hover">
+                    <div class="row g-0 align-items-center">
+
+                        <div class="col-md-4">
+                            <img :src="value.image" class="img-fluid w-100 object-fit-cover rounded-4"
+                                style="height: 220px;" alt="vlog-image">
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="card-body p-4">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="badge rounded-pill bg-primary-subtle text-primary px-3">
+                                        {{ value.category }}
+                                    </span>
+                                    <small class="text-muted">
+                                        <i class="fa-regular fa-calendar-days me-1"></i> {{ value.date }}
+                                    </small>
+                                </div>
+
+                                <h4 class="card-title fw-bold text-dark">{{ value.name }}</h4>
+
+                                <p class="card-text text-secondary mt-2">
+                                    {{ value.summary }}
+                                </p>
+
+                                <div class="d-flex align-items-center mt-3">
+                                    <small class="text-muted">
+                                        <i class="fa-solid fa-location-dot me-1 text-danger"></i> {{ value.location }}
+                                    </small>
+                                    <button @click="xemchitiet(value)"
+                                        class="btn btn-outline-primary ms-3 rounded-pill ms-auto">Xem thêm</button>
+                                    <button @click="showToast(value)"
+                                        class="btn btn-outline-primary rounded-pill ms-2">Copy</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                            <div id="liveToast" class="toast rounded-4" role="alert" aria-live="assertive"
+                                aria-atomic="true">
+                                <div class="toast-header bg-primary text-white rounded-4">
+                                    <strong class="me-auto">Copy Thành công</i></strong>
+                                    <button type="button" class="btn-close btn-white" data-bs-dismiss="toast"
+                                        aria-label="Close"></button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="vlog_data.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+<script>
+    new Vue({
+        el: "#app",
+        data: {
+            btvlog: Data_vlog,
+            tukhoa: '',
+        },
+        computed: {
+
+        },
+        methods: {
+            DieuKien(data) {
+                let tukhoa = this.tukhoa.toLowerCase().trim();
+                let ten = (data.name || "").toLowerCase();
+                let danhmuc = (data.category || "").toLowerCase();
+                let tieude = (data.summary || "").toLowerCase();
+                return ten.includes(tukhoa) || danhmuc.includes(tukhoa) || tieude.includes(tukhoa);
+            },
+            reset_search() {
+                return this.tukhoa = "";
+            },
+            search_baivet() {
+                return this.btvlog.filter(this.DieuKien);
+            },
+            xemchitiet(item) {
+                window.location.href = `detail_vlog.html?id=${item.id}`;
+            },
+            showToast(item) {
+                // Cách này sẽ lấy link hiện tại và chỉ thay thế tên file, giữ nguyên thư mục /v1/
+                let linkclickboard = window.location.href.replace('vlog.html', `detail_vlog.html?id=${item.id}`);
+
+                // Copy link vào bộ nhớ tạm
+                navigator.clipboard.writeText(linkclickboard);
+
+                // Kích hoạt Toast thông báo
+                const toastElement = document.getElementById('liveToast');
+                const toast = new bootstrap.Toast(toastElement);
+                toast.show();
+            }
+        }
+
+    })
+</script>
+
+</html>
