@@ -290,7 +290,6 @@ const DANH_SACH_BAI_VIET = [
     category: "Tài nguyên",
     content:`
     <p>
-    <hr>
     <h2> combo shadowrocket</h2>
     <ul>
         <li>App locket mod: <a href="https://dvsteam.vn/locket-free"target="_blank">link</a><br>
@@ -304,7 +303,7 @@ const DANH_SACH_BAI_VIET = [
         <li>Module lightrom: <a href="https://raw.githubusercontent.com/vantuan380/phonton/refs/heads/main/lightroom.module"target="_blank">link</a></li>
     </ul>
     <hr>
-    <h2>chung chung</h2>
+    <h2>Khác</h2>
     Kho phần mềm: <a href="https://www.hoanghaopc.com/trang-ch%E1%BB%A7">link</a><br>
     chặn qc iphone: <a href="https://www.mediafire.com/file/mp73j9qvevt2hdq">link</a><br>
     promt lệnh AI: <a href="https://academy.openai.com/public/tags/prompt-packs-6849a0f98c613939acef841c?fbclid=IwY2xjawNIzVRleHRuA2FlbQIxMABicmlkETFZVlF2WHVLS05nWEpIWU1NAR45V0SeTFKGz53z9-256aTMWtcU5XiVFUFc3CGZRo2KYItt4C-rQAvsXDFJ6g_aem_21CasUjZMjr35LAmYJEL5w">link</a><br>

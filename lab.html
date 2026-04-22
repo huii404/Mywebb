@@ -36,6 +36,9 @@
             <a class="nav-link active" aria-current="page" href="lab.html">Lab</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="tool.html">Tool</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="contact.html">Contact</a>
           </li>
         </ul>
@@ -46,11 +49,6 @@
   <div class="container" id="app">
     <div class="row">
       <h3 class="mt-3 text-center">Build computer</h3>
-      <div class="d-flex">
-        <input type="text" class="form-control mt-2" placeholder="Nhập nội dung">
-        <button class="btn btn-outline-danger ms-2 mt-2"><i class="fa-solid fa-trash"></i></button>
-      </div>
-
       <div class="col-lg-2">
         <div class="card mt-3 border-1 text-center p-2">
           <b>Linh Kiện</b>
@@ -62,9 +60,9 @@
             <ul v-for="" class="dropdown-menu">
               <li v-for="item in value.items" :key="item.id">
                 <div class="form-check text-center ms-2">
-                  <input class="form-check-input" type="radio" :name="value.category" :id="'item-' + item.id" :value="item"
-                    checked>
-                  <label class="form-check-label" :for="'item-' + item.id">
+                  <input class="form-check-input" type="radio" :name="value.category" :id="'item-' + item.id"
+                    :value="item" checked v-model="selectedItems[value.category]">
+                  <label class="form-check-label p-1" :for="'item-' + item.id">
                     {{item.name}}
                   </label>
                 </div>
@@ -72,36 +70,58 @@
             </ul>
           </div>
         </div>
-
       </div>
 
       <div class="col-lg-10">
         <div class="row">
-
           <div class="col-lg-12 mt-3">
             <div class="card p-2">
               <div class="d-flex align-items-center">
-                <button class="btn btn-outline-primary rounded-pill"><i class="fa-solid fa-chart-column"></i> So Sánh</button>
-                <button class="btn btn-outline-danger rounded-pill ms-2"><i class="fa-solid fa-arrow-rotate-left"></i> Reset</button>
+                <button class="btn btn-outline-primary rounded-pill"><i class="fa-solid fa-chart-column"></i> So
+                  Sánh</button>
+                <button @click="reSetlinhkien" class="btn btn-outline-danger rounded-pill ms-2"><i
+                    class="fa-solid fa-arrow-rotate-left"></i>
+                  Reset</button>
+
+                <div class="dropdown">
+                  <button class="btn btn-outline-primary dropdown-toggle ms-2 rounded-pill" type="button"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+                    configuration
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li v-for="(value,index) in arr2"><a @click.prevent="applyConfig(value)"
+                        class="dropdown-item">{{value.name}}</a></li>
+                  </ul>
+                </div>
               </div>
-              
             </div>
           </div>
-
         </div>
 
-        <div class="card mt-3">
-          <b class="text-center">Tổng hợp</b>
+        <div class="card mt-2 h-100 d-flex flex-column">
+          <div class="card-header bg-transparent border-0">
+            <b class="d-block text-center">Tổng hợp</b>
+          </div>
+
+          <ul class="list-group list-group-flush flex-grow-1">
+            <li v-for="(item, category) in selectedItems" :key="category" class="list-group-item">
+              <span class="fw-bold">{{ category }}:</span> {{ item.name }}
+              <br>
+              <small class="text-primary">{{ formatPrice(item.price) }} VNĐ</small>
+            </li>
+
+            <li v-if="Object.keys(selectedItems).length === 0" class="list-group-item text-muted text-center italic">
+              Chưa có linh kiện nào được chọn
+            </li>
+          </ul>
+
+          <div class="card-footer bg-light">
+            <b class="d-block text-center">
+              Tổng chi phí: {{ formatPrice(totalPrice) }} VNĐ
+            </b>
+          </div>
         </div>
       </div>
-      <div class="col-lg-12">
-        <div class="card mt-3">
-          <b class="text-center">Tổng chi phí</b>
-        </div>
-
-      </div>
-
-
     </div>
   </div>
 
@@ -115,10 +135,18 @@
     el: "#app",
     data: {
       arr: Data_Build,
+      arr2: PC_Configurations,
       tukhoa: "",
+      selectedItems: {}
     },
     computed: {
-
+      totalPrice() {
+        let total = 0;
+        for (let key in this.selectedItems) {
+          total += this.selectedItems[key].price;
+        }
+        return total;
+      }
     },
     methods: {
 
@@ -129,9 +157,34 @@
         let danhmuc = (data.brand || "").toLowerCase();
         return ten.includes(tukhoa) || phanloai.includes(tukhoa) || danhmuc.includes(tukhoa);
       },
-      listCPU(item) {
+      formatPrice(value) {
+        if (!value) return '0';
+        return value.toLocaleString('it-IT');
+      },
+      reSetlinhkien() {
+        return this.selectedItems = {};
+      },
+      applyConfig(config) {
+        // B1: Reset giỏ hàng hiện tại 
+        this.selectedItems = {};
 
-      }
+        // B2: Duyệt qua danh sách ID có trong cấu hình mẫu 
+        config.items.forEach(idCanTim => {
+
+          // B3: Tìm trong kho (arr) xem ID này thuộc Category nào và là Item nào
+          this.arr.forEach(categoryObj => {
+            const foundItem = categoryObj.items.find(item => item.id === idCanTim);
+
+            if (foundItem) {
+              // B4: "Push" vào object selectedItems (Vue 2 sẽ nhận biết sự thay đổi này)
+              // Chúng ta dùng Vue.set để đảm bảo tính phản ứng (Reactivity)
+              this.$set(this.selectedItems, categoryObj.category, foundItem);
+            }
+          });
+        });
+      },
+
+
     },
   })
 </script>
