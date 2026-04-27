@@ -9,18 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <style>
-        /* Thêm một chút CSS để hover có hiệu ứng */
-        .hobby-badge {
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .hobby-badge:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -33,14 +22,11 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link active" href="article.html">Article</a></li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="vlog.html">Vlog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="lab.html">Lab</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="tool.html">Tool</a>
@@ -51,100 +37,91 @@
         </div>
     </nav>
 
-    <div class="container pb-5" id="app">
-        <div class="row">
-            <h3 class="text-center mt-4"><b>Liên hệ</b></h3>
-
-            <div class="col-lg-4">
-                <div class="card text-center mt-2 shadow py-3">
-                    <i class="fa-solid fa-envelope fa-2x text-primary mb-2"></i>
-                    <b>hcao84539@gmail.com</b>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card text-center mt-2 shadow py-3">
-                    <i class="fa-brands fa-github fa-2x mb-2"></i>
-                    <b>Huii404</b>
-                </div>
-            </div>
-            <div class="col-lg-4">
-                <div class="card text-center mt-2 shadow py-3">
-                    <i class="fa-brands fa-tiktok fa-2x mb-2"></i>
-                    <b>Huii404</b>
+    <div class="container" id="app">
+    <div class="row">
+        <div class="card mt-2 shadow border-0 rounded-5 p-4" style="background: rgba(255, 255, 255, 0.9);">
+            <div class="d-flex align-items-center mb-4">
+                <img src="https://th.bing.com/th/id/OIP.Ex3KagXM4zYYfkTWSSXL9AHaHa?w=180&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3"
+                    alt="Avatar" class="rounded-pill border border-3 border-success" style="height: 90px; width: 90px; object-fit: cover;">
+                <div class="ms-4">
+                    <h1 class="fw-bold mb-0">Huii</h1>
+                    <span class="badge bg-success-subtle text-success rounded-pill">Admin</span>
                 </div>
             </div>
 
-            <div class="row-auto text-center">
-                <span class="badge bg-primary mt-4 fs-5 rounded-pill">More</span>
-            </div>
+            <div class="row g-4">
+                <div class="col-lg-4">
+                    <div class="d-flex flex-column gap-3">
+                        
+                        <div class="card border-0 border-start border-primary border-5 shadow-sm py-3 px-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-solid fa-envelope fa-xl text-primary me-3"></i>
+                                <div>
+                                    <small class="text-muted d-block">Email</small>
+                                    <strong>hcao84539@gmail.com</strong>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="col-lg-12 mt-4">
+                        <div class="card border-0 border-start border-dark border-5 shadow-sm py-3 px-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-github fa-xl text-dark me-3"></i>
+                                <div>
+                                    <small class="text-muted d-block">Github</small>
+                                    <strong>Huii404</strong>
+                                </div>
+                            </div>
+                        </div>
 
-                <div class="card shadow p-4 border-1 h-90 d-flex">
-                    <b class="text-center">Kĩ năng</b>
-                    <div class="d-flex flex-wrap gap-2 mt-3">
-                        <span v-for="(hobby, index) in skillsList" :key="index"
-                            class="badge rounded-pill text-bg-light border px-3 py-2 fs-6 hobby-badge text-dark">
-                            <i :class="hobby.icon" class="me-1 text-primary"></i> {{ hobby.name }}
-                        </span>
-                    </div>
-                    <hr class="mt-4 text-danger">
-                    <b class="text-center">Sở thích</b>
-                    <div class="d-flex flex-wrap gap-2 mt-3">
-                        <span v-for="(hobby, index) in hobbiesList" :key="index"
-                            class="badge rounded-pill text-bg-light border px-3 py-2 fs-6 hobby-badge text-dark">
-                            <i :class="hobby.icon" class="me-1 text-primary"></i> {{ hobby.name }}
-                        </span>
-                    </div>
-                </div>
-            </div>
+                        <div class="card border-0 border-start border-danger border-5 shadow-sm py-3 px-4">
+                            <div class="d-flex align-items-center">
+                                <i class="fa-brands fa-tiktok fa-xl text-danger me-3"></i>
+                                <div>
+                                    <small class="text-muted d-block">TikTok</small>
+                                    <strong>Huii404</strong>
+                                </div>
+                            </div>
+                        </div>
 
-            <div class="row-auto text-center">
-                <span class="badge bg-primary mt-4 fs-5 rounded-pill">Memory</span>
-            </div>
-            <div class="col-lg-3 mt-2">
-                <div class="card mt-3 shadow h-100 rounded-5 position-relative">
-                    <img src="https://res.cloudinary.com/dxcuzqm9m/image/upload/v1766934098/IMG_6997_znhj6i.jpg"
-                        alt="" class="w-100 h-100 rounded-5" style="object-fit: cover;">
-
-                    <div
-                        class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-end rounded-5">
-                        <p class="text-secondly fw-bold fs-4">Ăn sáng trên Hải Vân</p>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 mt-2">
-                <div class="card mt-3 shadow h-100 rounded-5 position-relative">
-                    <img src="https://res.cloudinary.com/dxcuzqm9m/image/upload/v1766934070/IMG_8542_bqxj0o.jpg"
-                        alt="" class="w-100 h-100 rounded-5" style="object-fit: cover;">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow p-4 h-100 bg-light">
+                        <h5 class="fw-bold">Kĩ năng</h5>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <span v-for="(skill, index) in skillsList" :key="'s'+index"
+                                class="badge rounded-pill bg-white border px-3 py-2 fs-6 text-dark">
+                                <i :class="skill.icon" class="me-1 text-primary"></i> {{ skill.name }}
+                            </span>
+                        </div>
 
-                    <div
-                        class="card-overlay position-absolute top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-end rounded-5">
-                        <p class="text-secondly fw-bold fs-4">Picnic Hòa Bắc</p>
+                        <hr class="my-4">
+
+                        <h5 class="fw-bold">Sở thích</h5>
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <span v-for="(hobby, index) in hobbiesList" :key="'h'+index"
+                                class="badge rounded-pill bg-white border px-3 py-2 fs-6 text-dark">
+                                <i :class="hobby.icon" class="me-1 text-primary"></i> {{ hobby.name }}
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-3 mt-2">
-                <div class="card mt-3 shadow h-100 rounded-5">
-                    <button
-                        class="btn btn-outline-warning w-100 h-100 d-flex align-items-center justify-content-center rounded-5">
-                        <i class="fa-regular fa-square-plus fa-4x"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="col-lg-3 mt-2">
-                <div class="card mt-3 shadow h-100 rounded-5">
-                    <button
-                        class="btn btn-outline-warning w-100 h-100 d-flex align-items-center justify-content-center rounded-5">
-                        <i class="fa-regular fa-square-plus fa-4x"></i>
-                    </button>
+            <div class="row mt-4">
+                <div v-for="(img, idx) in travelPhotos" :key="idx" class="col-lg-3 col-md-6 mb-3">
+                    <div class="card border-0 shadow-sm h-100 rounded-4 overflow-hidden position-relative">
+                        <img :src="img.url" class="card-img-top" style="height: 200px; object-fit: cover;" :alt="img.title">
+                        <div class="card-img-overlay d-flex align-items-end p-2" style="background: linear-gradient(transparent, rgba(0,0,0,0.7));">
+                            <p class="text-white small mb-0 fw-bold">{{ img.title }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"

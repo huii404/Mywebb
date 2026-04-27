@@ -447,4 +447,139 @@ const DANH_SACH_BAI_VIET = [
   <hr>
   `,
 },
+{
+    id: 7,  
+    name: "Dùng nhiều tài khoản zalo/1 máy",
+    date: "27/04/2026",  
+    category: "Trick",
+    content: `
+<h3><b>🎯 2 CÁCH CÀI NHIỀU ZALO TRÊN 1 MÁY TÍNH (KHÔNG CẦN PHẦN MỀM THỨ 3)</b></h3>
+<p>
+    Bình thường bạn chỉ dùng được tối đa 3 tài khoản Zalo (1 app + 2 tab web). Dưới đây là 2 cách đơn giản, ổn định để chạy nhiều Zalo cùng lúc trên Windows 7/10/11.
+</p>
+<hr>
+
+<h3><b>Cách 1: Dùng nhiều hồ sơ Edge (Zalo Web) – Nhanh & Nhẹ nhất</b></h3>
+<p>Phù hợp nếu bạn chỉ cần dùng Zalo Web (đầy đủ tính năng chat, gọi, gửi file).</p>
+<ul>
+    <li><b>Bước 1:</b> Mở Microsoft Edge → gõ vào thanh địa chỉ: <b>edge://settings/profiles/localBrowserDataShare</b> → Tắt tính năng “Chia sẻ dữ liệu duyệt web”.</li>
+    <li><b>Bước 2:</b> Click biểu tượng tài khoản góc phải → <b>Thêm hồ sơ</b> (Add profile).</li>
+    <li><b>Bước 3:</b> Trong hồ sơ mới, truy cập <b>https://chat.zalo.me/</b> và đăng nhập tài khoản Zalo.</li>
+</ul>
+<p><b>Lặp lại Bước 2-3</b> để tạo thêm nhiều hồ sơ (mỗi hồ sơ = 1 tài khoản Zalo riêng biệt).</p>
+<hr>
+
+<h3><b>Cách 2: Dùng nhiều tài khoản Windows (Zalo App) – Đầy đủ tính năng nhất</b></h3>
+<p>Cách này cho phép chạy nhiều bản Zalo PC độc lập, không xung đột.</p>
+<ul>
+    <li><b>Bước 1:</b> Nhấn chuột phải vào <b>This PC</b> → <b>Manage</b> → <b>Local Users and Groups</b> → <b>Users</b>.</li>
+    <li><b>Bước 2:</b> Chuột phải khoảng trống → <b>New User</b>.<br>
+        - User name: ví dụ <b>Zalo1</b> (không dấu)<br>
+        - Password: đặt đơn giản (hoặc để trống nếu muốn)<br>
+        - Tick: <b>User cannot change password</b> + <b>Password never expires</b><br>
+        Bỏ tick “User must change password at next logon” → Create.<br>
+        Lặp lại để tạo Zalo2, Zalo3…</li>
+    <li><b>Bước 3:</b> Copy thư mục Zalo gốc (thường ở <b>C:\\Program Files\\Zalo</b> hoặc <b>C:\\Program Files (x86)\\Zalo</b>) ra ổ khác (ví dụ ổ D hoặc F).<br>
+        Dán nhiều bản và đổi tên thành <b>Zalo1</b>, <b>Zalo2</b>…</li>
+    <li><b>Bước 4:</b> Tạo shortcut cho từng thư mục: Chuột phải Zalo.exe → Send to → Desktop (create shortcut).</li>
+    <li><b>Bước 5:</b> Chuột phải shortcut → <b>Properties</b> → Tab <b>Shortcut</b>.<br>
+        Trong ô Target, dán dòng sau vào trước đường dẫn cũ (có khoảng trắng):<br>
+        <b>C:\\Windows\\System32\\runas.exe /savecred /user:TÊNMÁYTÍNH\\Zalo1</b><br>
+        (Thay <b>TÊNMÁYTÍNH</b> bằng tên máy của bạn – xem ở Settings → System → About).</li>
+    <li><b>Bước 6:</b> Change Icon → chọn icon Zalo → Apply → OK.<br>
+        Lặp lại cho các shortcut còn lại.</li>
+</ul>
+<p><b>Kết quả:</b> Mỗi shortcut sẽ chạy Zalo dưới quyền user khác nhau, bạn có thể mở cùng lúc nhiều tài khoản.</p>
+<hr>
+
+<h3><b>💡 Lưu ý quan trọng</b></h3>
+<ul>
+    <li>Cách 1 (Edge) nhanh, nhẹ, phù hợp dùng hàng ngày.</li>
+    <li>Cách 2 (App) đầy đủ tính năng hơn nhưng tốn tài nguyên hơn một chút.</li>
+    <li>Không nên lạm dụng quá nhiều user (5–7 cái là ổn).</li>
+    <li>Backup dữ liệu Zalo trước khi thử để tránh mất tin nhắn.</li>
+</ul>
+<p><i>Đăng bởi Hiếu Nguyễn – Cập nhật 2026</i></p>
+    `
+},
+{
+    id: 8,
+    name: "Cách tối ưu Windows để máy chạy mượt và gọn nhẹ",
+    date: "27/04/2026",
+    category: "Tech",
+    content: `
+<h3><b>🎯 TẠI SAO CẦN TỐI ƯU WINDOWS?</b></h3>
+<p>
+    Máy chậm, lag, khởi động lâu thường do chương trình chạy nền, hiệu ứng đồ họa nặng và dịch vụ không cần thiết. 
+    Các bước dưới giúp máy mượt hơn, giảm RAM/CPU đáng kể mà không cần phần mềm ngoài.
+</p>
+<hr>
+
+<h3><b>📌 CÁCH 1: TẮT ỨNG DỤNG KHỞI ĐỘNG & CHẠY NỀN</b></h3>
+<p>
+    + Nhấn <b>Ctrl + Shift + Esc</b> → Tab <b>Startup apps</b> → Tắt các app không cần (OneDrive, Spotify...).<br>
+    + Settings → <b>Privacy & security</b> → <b>Background apps</b> → Tắt hầu hết.
+</p>
+<hr>
+
+<h3><b>📌 CÁCH 2: GIẢI PHÓNG DUNG LƯỢNG & GIẢM HIỆU ỨNG</b></h3>
+<p>
+    + Settings → <b>System</b> → <b>Storage</b> → Bật Storage Sense và chạy Cleanup.<br>
+    + Win + R → gõ <b>sysdm.cpl</b> → Advanced → Performance Settings → Chọn "Adjust for best performance" hoặc tắt Animations, Shadows.
+</p>
+<hr>
+
+<h3><b>📌 CÁCH 3: TẮT CÁC WINDOWS SERVICES KHÔNG CẦN (Quan trọng nhất)</b></h3>
+<p>
+    Nhấn <b>Win + R</b> → gõ <b>services.msc</b> → Enter.<br>
+    Với mỗi service: Chuột phải → Properties → Startup type thay đổi → Apply.
+</p>
+
+<h4><b>Nhóm Xbox & Gaming Services (Tắt nếu bạn KHÔNG dùng Xbox Game Pass, Xbox App, chơi game Xbox)</b></h4>
+<ul>
+    <li><b>Xbox Accessory Management Service</b> — <b>Tắt hẳn (Disabled)</b></li>
+    <li><b>Xbox Live Auth Manager</b> — <b>Tắt hẳn</b></li>
+    <li><b>Xbox Live Game Save</b> — <b>Tắt hẳn</b></li>
+    <li><b>Xbox Live Networking Service</b> — <b>Tắt hẳn</b></li>
+    <li><b>Gaming Services</b> — <b>Tắt hẳn</b> (nếu không chơi game Microsoft Store / Game Pass)</li>
+</ul>
+<p><i>Ghi chú:</i> Nếu bạn dùng Xbox App hoặc chơi game Xbox → để ở <b>Manual</b> thay vì Disabled.</p>
+<hr>
+
+<h4><b>Các dịch vụ khác nên tắt (theo nhu cầu)</b></h4>
+<ul>
+    <li><b>Print Spooler</b> — <b>Tắt hẳn</b> nếu không in ấn (rất phổ biến gây tốn tài nguyên).</li>
+    <li><b>Connected User Experiences and Telemetry (DiagTrack)</b> — <b>Tắt hẳn</b> (giảm telemetry Microsoft).</li>
+    <li><b>Windows Search (WSearch)</b> — <b>Manual</b> nếu bạn ít tìm kiếm file (hoặc Disabled nếu không dùng).</li>
+    <li><b>SysMain (Superfetch)</b> — <b>Manual</b> (trên SSD thường không cần, có thể gây disk usage cao).</li>
+    <li><b>Remote Desktop Services</b> — <b>Tắt hẳn</b> nếu không remote máy từ xa.</li>
+    <li><b>Geolocation Service</b> — <b>Tắt hẳn</b> nếu không cần định vị.</li>
+</ul>
+<p><i>Ghi chú chung:</i> 
+    • <b>Tắt hẳn (Disabled)</b>: Dành cho dịch vụ bạn chắc chắn không bao giờ dùng.<br>
+    • <b>Tạm thời (Manual)</b>: Dịch vụ chỉ chạy khi cần, an toàn hơn cho người mới.<br>
+    • Sau khi thay đổi → Restart máy để áp dụng.
+</p>
+<hr>
+
+<h3><b>📌 CÁCH 4: CÁC BƯỚC BỔ SUNG</b></h3>
+<ul>
+    <li>Cập nhật Windows & Driver qua Windows Update.</li>
+    <li>Quét virus bằng Windows Security.</li>
+    <li>Đặt Power Mode = Best performance.</li>
+</ul>
+<hr>
+
+<h3><b>⚡ CHECKLIST TỐI ƯU NHANH</b></h3>
+<ol>
+    <li>Tắt Startup apps + Background apps</li>
+    <li>Dọn Storage + giảm hiệu ứng đồ họa</li>
+    <li>Tắt Xbox Services (nếu không dùng)</li>
+    <li>Tắt Print Spooler + Telemetry</li>
+    <li>Restart và kiểm tra Task Manager</li>
+</ol>
+<p><b>Kết quả:</b> Máy nhẹ hơn, ít lag hơn, khởi động nhanh rõ rệt.</p>
+<p><i>Lưu ý quan trọng:</i> Chỉ tắt những gì bạn hiểu rõ. Nếu gặp lỗi, mở lại services.msc và đặt về Automatic. Nên tạo System Restore Point trước khi tối ưu.</p>
+    `
+},
 ];
